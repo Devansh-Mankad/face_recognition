@@ -1,0 +1,17 @@
+<html>
+  <head>
+      <title>Face Recognition</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+</html>
+
+<body>
+  <h1>Face Recognition</h1>
+  <video id="video" autoplay playsinline></video>
+  <br>
+  <button id="capture">Capture</button>
+  <button id="switch">Switch Camera</button>
+  <p id="result">Result: </p>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>

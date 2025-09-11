@@ -1,0 +1,82 @@
+import os
+from deepface import DeepFace
+import cv2
+import numpy as np
+import smtplib
+from email.mime.text import MIMEText
+
+# --- Configure emails ---
+emails = {
+    "Devansh Mankad" : "devansh7235@gmail.com" , 
+    "Pithiya Shyam" : "pithiyashyam42@gmail.com",
+    "Prof.Shubhangi Chaturvedi": "Shubhangi.chaturvedi@saffrony.ac.in" ,
+    "Prof.Nainsi Soni" : "nainsi.soni@saffrony.ac.in" ,
+    "Prof.Saliesh Patel" : "shailesh.patel@saffrony.ac.in" ,
+    "Prof.Avani Dedhia" : "avani.dedhia@saffrony.ac.in" ,
+    "Prof.Kunalsinh Kathia" : "kunalsinh.kathia@saffrony.ac.in" ,
+    "Prof.Tausif Shaikh" : "tausif.shaikh@saffrony.ac.in"
+}
+
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 587
+SENDER_EMAIL = "devmankad6064@gmail.com"
+SENDER_PASSWORD = "ggtw lzts mgta nyik"
+
+known_folder = "Database"
+known_embeddings = []
+
+for file in os.listdir(known_folder):
+    if file.endswith((".jpg", ".png")):
+        img_path = os.path.join(known_folder, file)
+        embedding = DeepFace.represent(img_path=img_path, model_name="Facenet")[0]["embedding"]
+        name = os.path.splitext(file)[0]
+        known_embeddings.append((name, embedding))
+
+def cosine_similarity(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+# --- Email function ---
+def send_email(to_email, subject, body):
+    msg = MIMEText(body)
+    msg["Subject"] = subject
+    msg["From"] = SENDER_EMAIL
+    msg["To"] = to_email
+
+    try:
+        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+        server.starttls()
+        server.login(SENDER_EMAIL, SENDER_PASSWORD)
+        server.sendmail(SENDER_EMAIL, to_email, msg.as_string())
+        server.quit()
+        print(f"Email sent to {to_email}")
+    except Exception as e:
+        print("Error sending email:", e)
+
+def recognize_face(frame):
+    try:
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+        frame_embedding = DeepFace.represent(img_path=frame_rgb, model_name="Facenet")[0]["embedding"]
+
+        match_name = "Unknown"
+        similarity = 0
+
+        for name, emb in known_embeddings:
+            sim = cosine_similarity(frame_embedding, emb)
+            if sim > similarity:
+                similarity = sim
+                match_name = name
+
+        if similarity >= 0.75:
+            if match_name in emails:
+                send_email(
+                    to_email=emails[match_name],
+                    subject=f"Welcome Prof. {match_name} to VEYG 2K25",
+                    body=f"Good Morning! {match_name}.I am very very lucky to welcome you in The VEYG 2K25 Organized by Saffrony Institute Of Technology..."
+                )
+            return f"{match_name} ({similarity:.2f})\n -Thanks for Using!"
+        else:
+            return "No Match Found -Thanks for Using!"
+    except Exception as e:
+        print("Error:", e)
+        return "No face detected"
