@@ -4,6 +4,7 @@ import cv2
 import numpy as np
 import base64
 from models.face_recognition import recognize_face
+import os
 
 app = Flask(__name__)
 
@@ -29,5 +30,7 @@ def upload():
         print("Error in /upload:", e)
         return jsonify({"result": "Error processing image"}), 500
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))  # Render default is 10000
+    app.run(host="0.0.0.0", port=port, debug=False)

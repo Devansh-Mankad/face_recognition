@@ -1,7 +1,7 @@
 services:
   - type: web
-    name: face-recognition
+    name: face-recognition-app
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app --timeout 120 --workers 1 --threads 8"
+    startCommand: "gunicorn app:app --bind 0.0.0.0:$PORT --timeout 120 --workers 1 --threads 8"
     plan: free
