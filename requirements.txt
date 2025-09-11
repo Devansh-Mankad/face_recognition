@@ -2,7 +2,7 @@ Flask
 gunicorn
 opencv-python-headless
 numpy
-deepface
-tensorflow
-tf-keras
-retinaface
+deepface==0.0.75
+tensorflow==2.5.0
+tf-keras==2.5.0
+retinaface==1.1.1
