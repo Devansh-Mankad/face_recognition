@@ -3,6 +3,6 @@ gunicorn
 opencv-python-headless
 numpy
 deepface
-tensorflow>=2.5.0
+tensorflow>=1.9.0
 tf-keras
 retinaface
