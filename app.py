@@ -8,6 +8,8 @@ import os
 
 app = Flask(__name__)
 
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"  # Suppress INFO and WARNING logs
+
 # --- Home page ---
 @app.route("/")
 def index():
