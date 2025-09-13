@@ -17,13 +17,14 @@ emails = {
     "Prof.Kunalsinh Kathia" : "kunalsinh.kathia@saffrony.ac.in" ,
     "Prof.Tausif Shaikh" : "tausif.shaikh@saffrony.ac.in" ,
     "Krish" : "1911krishpatel@gmail.com" ,
-    "Bansari" : "bansipatel8780@gmail.com"
+    "Bansari" : "bansipatel8780@gmail.com" ,
+    "Twisha" : "twishmankad700@gmail.com"
 }
 
 mail_body = {
     "Devansh Mankad": "Good Morning! Devansh Mankad. I am very very lucky to welcome you in The VEYG 2K25 Organized by Saffrony Institute Of Technology..." ,
     "Krish" : "Good Morning! Devansh Mankad. I am very very lucky to welcome you in The VEYG 2K25 Organized by Saffrony Institute Of Technology..." ,
-    "Bansari" : "Good Morning! Devansh Mankad. I am very very lucky to welcome you in The VEYG 2K25 Organized by Saffrony Institute Of Technology..."
+    "Twisha" : "Good Morning! Devansh Mankad. I am very very lucky to welcome you in The VEYG 2K25 Organized by Saffrony Institute Of Technology..."
 }
 
 SMTP_SERVER = "smtp.gmail.com"
@@ -71,7 +72,7 @@ def send_email(to_emails, subject, body):
 
 # --- Track last email times ---
 last_email_sent = {}
-EMAIL_INTERVAL = 300  # 5 minutes
+EMAIL_INTERVAL = 60
 
 # --- Recognize faces and send email to all recognized ---
 def recognize_face(frame):
