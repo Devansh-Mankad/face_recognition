@@ -31,14 +31,22 @@ async function startCamera(back = false) {
 }
 
 // --- Convert video frame to base64 ---
-function getFrame() {
+function getFrame(scale = 2) {
   const canvas = document.createElement("canvas");
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+
+  // make canvas bigger by scaling factor
+  canvas.width = video.videoWidth * scale;
+  canvas.height = video.videoHeight * scale;
+
   const ctx = canvas.getContext("2d");
+
+  // scale the drawn video
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-  return canvas.toDataURL("image/jpeg");
+
+  // return as JPEG (you can adjust quality too, 0.9 = 90%)
+  return canvas.toDataURL("image/jpeg", 1.0);
 }
+
 
 // --- Capture button ---
 let lastClick = 0;
