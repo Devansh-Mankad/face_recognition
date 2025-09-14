@@ -8,23 +8,25 @@ from email.mime.text import MIMEText
 
 # --- Configure emails ---
 emails = {
-    "Devansh Mankad" : "devansh7235@gmail.com" , 
-    "Pithiya Shyam" : "pithiyashyam42@gmail.com",
-    "Prof.Shubhangi Chaturvedi": "Shubhangi.chaturvedi@saffrony.ac.in" ,
+    "Dr.Harshvadan Patel" : "principal.engineering@saffrony.ac.in" ,
+    "Dr.Pooja Mehta" : "pooja.mehta@saffrony.ac.in", 
+    "Dr.Rasik Patel" : "rasik.patel@saffrony.ac.in",
+    "Dr.Saliesh Patel" : "shailesh.patel@saffrony.ac.in" ,
+    "Dr.Gulab Bambhaniya" : "gulab.bambhaniya@saffrony.ac.in" ,
+    "Prof.Krishna Dave" : "krishna.dave@saffrony.ac.in" ,
     "Prof.Nainsi Soni" : "nainsi.soni@saffrony.ac.in" ,
-    "Prof.Saliesh Patel" : "shailesh.patel@saffrony.ac.in" ,
     "Prof.Avani Dedhia" : "avani.dedhia@saffrony.ac.in" ,
     "Prof.Kunalsinh Kathia" : "kunalsinh.kathia@saffrony.ac.in" ,
+    "Prof.Shubhangi Chaturvedi": "Shubhangi.chaturvedi@saffrony.ac.in" ,
     "Prof.Tausif Shaikh" : "tausif.shaikh@saffrony.ac.in" ,
-    "Krish" : "1911krishpatel@gmail.com" ,
-    "Bansari" : "bansipatel8780@gmail.com" ,
-    "Twisha" : "twishmankad700@gmail.com"
+    "Prof.Siddharajsinh Vihol" : "siddharaj.vihol@saffrony.ac.in" ,
+    "Prof.Vipul Solanki" : "vipul.solanki@saffrony.ac.in",
+    "Prof.Ramprakash Inani" : "ramprakash.inani@saffrony.ac.in" ,
+    
 }
 
 mail_body = {
-    "Devansh Mankad": "Good Morning! Devansh Mankad. I am very very lucky to welcome you in The VEYG 2K25 Organized by Saffrony Institute Of Technology..." ,
-    "Krish" : "Good Morning! Devansh Mankad. I am very very lucky to welcome you in The VEYG 2K25 Organized by Saffrony Institute Of Technology..." ,
-    "Twisha" : "Good Morning! Devansh Mankad. I am very very lucky to welcome you in The VEYG 2K25 Organized by Saffrony Institute Of Technology..."
+    
 }
 
 SMTP_SERVER = "smtp.gmail.com"
@@ -123,7 +125,7 @@ def recognize_face(frame):
         if emails_to_send and combined_body:
             send_email(
                 to_emails=emails_to_send,
-                subject="Welcome to VEYG 2K25!",
+                subject="A Warm Welcome to VEYG 2K25 & Engineers’ Day Celebration 🎉",
                 body=combined_body
             )
 
